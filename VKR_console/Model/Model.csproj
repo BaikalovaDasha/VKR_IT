@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="ASTRALib">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\RastrWin3\ASTRALib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

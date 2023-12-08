@@ -1,12 +1,7 @@
 ﻿using Model;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json;
 using System.Windows.Forms;
 
 namespace VKRFORM
@@ -16,8 +11,22 @@ namespace VKRFORM
     /// </summary>
     public partial class MainForm : Form
     {
-        private  List<SolarPowerPlant> SPPList = new();
-        BindingSource sppSource = new();
+        /// <summary>
+        /// Список СЭС для теста.
+        /// </summary>
+        private List<SolarPowerPlant> ListSPP;
+
+        /// <summary>
+        /// Тестовый объект1.
+        /// </summary>
+        private SolarPowerPlant listSPP1;
+
+        /// <summary>
+        /// Тестовый объект2.
+        /// </summary>
+        private SolarPowerPlant listSPP2;
+
+        private BindingList<SolarPowerPlant> SPPDataList;
 
         /// <summary>
         /// 
@@ -26,8 +35,12 @@ namespace VKRFORM
         {
             InitializeComponent();
 
-            sppSource.DataSource = SPPList;
-            dataGridView1.DataSource = sppSource;
+            ListSPP = new List<SolarPowerPlant>();
+
+            // Что это такое? 
+            //DataGridViewCell cell = new DataGridViewTextBoxCell();
+            SPPDataList = new BindingList<SolarPowerPlant>(ListSPP);
+            dataGridView1.DataSource = SPPDataList;
         }
 
         /// <summary>
@@ -82,40 +95,61 @@ namespace VKRFORM
             return collection;
         }
 
+        /// <summary>
+        /// Сохранение таблицы СЭС в JSON.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Save_TableSPP_Click(object sender, EventArgs e)
         {
+            saveFileDialog1.Filter = "Json files (*.json)|*.json";
+            saveFileDialog1.FilterIndex = 2;
+            saveFileDialog1.InitialDirectory = @"C:\Users\Дарья\Desktop\1. ВКР\json файлы";
+            saveFileDialog1.RestoreDirectory = true;
+            saveFileDialog1.FileName = "json_File";
+            saveFileDialog1.Title = "json_Export";
 
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                var json = JsonSerializer.Serialize(ListSPP);
+
+                File.WriteAllText(saveFileDialog1.FileName, json);
+
+                MessageBox.Show("Файл успешно сохранен!", "Сохранение файла",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
-        ///// <summary>
-        ///// Метод загрузки вкладки.
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void TabControl_Load(object sender, EventArgs e)
-        //{
-        //tabControl1.TabPages.Remove(tabPage_tableSPP);
-        //tabControl1.TabPages.Remove(tabPage_resultsCalculation);
-        //}
+        /// <summary>
+        /// Загрузить таблицу СЭС.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Download_TableSPP_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string filename = openFileDialog1.FileName;
 
-        ///// <summary>
-        ///// Открытие Таблицы СЭС.
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void Open_tableSPP_Click(object sender, EventArgs e)
-        //{
-        //tabControl1.TabPages.Add(tabPage_tableSPP);
-        //}
+                string jsonString = File.ReadAllText(filename);
+                List<SolarPowerPlant> listFromJson = 
+                    JsonSerializer.Deserialize<List<SolarPowerPlant>>(jsonString);
 
-        ///// <summary>
-        ///// Открытие результатов расчёта.
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void Open_ResultsCuculation_Click(object sender, EventArgs e)
-        //{
-        //tabControl1.TabPages.Add(tabPage_resultsCalculation);
-        //}
+                SPPDataList = new BindingList<SolarPowerPlant>(listFromJson);
+                dataGridView1.DataSource = SPPDataList;
+            }
+        }
+
+        /// <summary>
+        /// Событие добавление новой строки или изменение...
+        /// какой-либо ячейки в строке.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            Console.WriteLine("DataBindingComplete");
+            Console.WriteLine(e.ListChangedType);
+        }
     }
 }

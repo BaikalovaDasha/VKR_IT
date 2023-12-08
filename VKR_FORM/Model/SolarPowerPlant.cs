@@ -1,5 +1,9 @@
-﻿namespace Model
+﻿using System.ComponentModel;
+
+namespace Model
 {
+
+
     /// <summary>
     /// Класс СЭС.
     /// </summary>
@@ -16,19 +20,9 @@
         private string _nameSPP;
 
         /// <summary>
-        /// Чтение и запись статуса СЭС.
-        /// </summary>
-        public StatusSPP StatusSPP { get; set; }
-
-        /// <summary>
         /// Узел СЭС в РМ.
         /// </summary>
         private int _nodeSPP;
-
-        /// <summary>
-        /// Энрегосистема.
-        /// </summary>
-        public PowerSystem PowerSystem;
 
         /// <summary>
         /// Установленная мощность.
@@ -38,6 +32,7 @@
         /// <summary>
         /// Чтение и запись номера СЭС.
         /// </summary>
+        [DisplayName("№")]
         public int NumberSPP
         {
             get
@@ -53,6 +48,7 @@
         /// <summary>
         /// Чтение и запись наименование СЭС.
         /// </summary>
+        [DisplayName("Наименование СЭС")]
         public string NameSPP
         {
             get
@@ -66,8 +62,15 @@
         }
 
         /// <summary>
+        /// Чтение и запись статуса СЭС.
+        /// </summary>
+        [DisplayName("Статус СЭС")]
+        public StatusSPP StatusSPP { get; set; }
+
+        /// <summary>
         /// Чтение и запись узла в РМ.
         /// </summary>
+        [DisplayName("Номер агрегата в РМ")]
         public int NodeSPP
         {
             get
@@ -81,8 +84,15 @@
         }
 
         /// <summary>
+        /// Энрегосистема.
+        /// </summary>
+        [DisplayName("Энергосистема")]
+        public PowerSystem PowerSystem { get; set; }
+
+        /// <summary>
         /// Чтение и запись номера СЭС.
         /// </summary>
+        [DisplayName("Установленная мощность СЭС")]
         public double InstalledCapacity
         {
             get

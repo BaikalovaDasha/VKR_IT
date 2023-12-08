@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            saveFileDialog1 = new SaveFileDialog();
             toolStrip1 = new ToolStrip();
             DropDownButton_File = new ToolStripDropDownButton();
             downloadFile = new ToolStripMenuItem();
@@ -53,14 +54,8 @@
             tabControl1 = new TabControl();
             tabPage_tableSPP = new TabPage();
             dataGridView1 = new DataGridView();
-            NumSPP = new DataGridViewTextBoxColumn();
-            NameSPP = new DataGridViewTextBoxColumn();
-            StatusSPP = new DataGridViewTextBoxColumn();
-            NodeSPP = new DataGridViewTextBoxColumn();
-            PowerSystem = new DataGridViewTextBoxColumn();
-            ActivePower = new DataGridViewTextBoxColumn();
-            ReactivePower = new DataGridViewTextBoxColumn();
             tabPage_resultsCalculation = new TabPage();
+            openFileDialog1 = new OpenFileDialog();
             toolStrip1.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage_tableSPP.SuspendLayout();
@@ -91,26 +86,27 @@
             // 
             downloadFile.DropDownItems.AddRange(new ToolStripItem[] { Download_RM, Download_TableSPP });
             downloadFile.Name = "downloadFile";
-            downloadFile.Size = new Size(166, 26);
+            downloadFile.Size = new Size(224, 26);
             downloadFile.Text = "Загрузить";
             // 
             // Download_RM
             // 
             Download_RM.Name = "Download_RM";
-            Download_RM.Size = new Size(221, 26);
+            Download_RM.Size = new Size(224, 26);
             Download_RM.Text = "Расчётную модель";
             // 
             // Download_TableSPP
             // 
             Download_TableSPP.Name = "Download_TableSPP";
-            Download_TableSPP.Size = new Size(221, 26);
+            Download_TableSPP.Size = new Size(224, 26);
             Download_TableSPP.Text = "Таблицу СЭС";
+            Download_TableSPP.Click += Download_TableSPP_Click;
             // 
             // saveFile
             // 
             saveFile.DropDownItems.AddRange(new ToolStripItem[] { Save_TableSPP, Save_calculationResults });
             saveFile.Name = "saveFile";
-            saveFile.Size = new Size(166, 26);
+            saveFile.Size = new Size(224, 26);
             saveFile.Text = "Сохранить";
             // 
             // Save_TableSPP
@@ -129,7 +125,7 @@
             // Exit
             // 
             Exit.Name = "Exit";
-            Exit.Size = new Size(166, 26);
+            Exit.Size = new Size(224, 26);
             Exit.Text = "Выход";
             // 
             // toolStripSeparator1
@@ -237,7 +233,6 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { NumSPP, NameSPP, StatusSPP, NodeSPP, PowerSystem, ActivePower, ReactivePower });
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
@@ -245,66 +240,7 @@
             dataGridView1.Size = new Size(1124, 399);
             dataGridView1.TabIndex = 0;
             dataGridView1.EditingControlShowing += DataGridView1_EditingControlShowing;
-            // 
-            // NumSPP
-            // 
-            NumSPP.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            NumSPP.DataPropertyName = "NumSPP";
-            NumSPP.Frozen = true;
-            NumSPP.HeaderText = "№";
-            NumSPP.MinimumWidth = 6;
-            NumSPP.Name = "NumSPP";
-            NumSPP.Width = 50;
-            // 
-            // NameSPP
-            // 
-            NameSPP.DataPropertyName = "NameSPP";
-            NameSPP.Frozen = true;
-            NameSPP.HeaderText = "Наименование СЭС";
-            NameSPP.MinimumWidth = 6;
-            NameSPP.Name = "NameSPP";
-            NameSPP.Resizable = DataGridViewTriState.True;
-            NameSPP.Width = 221;
-            // 
-            // StatusSPP
-            // 
-            StatusSPP.DataPropertyName = "StatusSPP";
-            StatusSPP.HeaderText = "Статус СЭС";
-            StatusSPP.MinimumWidth = 6;
-            StatusSPP.Name = "StatusSPP";
-            StatusSPP.Width = 140;
-            // 
-            // NodeSPP
-            // 
-            NodeSPP.DataPropertyName = "NodeSPP";
-            NodeSPP.HeaderText = "Узел в РМ";
-            NodeSPP.MinimumWidth = 6;
-            NodeSPP.Name = "NodeSPP";
-            NodeSPP.Width = 150;
-            // 
-            // PowerSystem
-            // 
-            PowerSystem.DataPropertyName = "PowerSystem";
-            PowerSystem.HeaderText = "Энергосистема";
-            PowerSystem.MinimumWidth = 6;
-            PowerSystem.Name = "PowerSystem";
-            PowerSystem.Width = 210;
-            // 
-            // ActivePower
-            // 
-            ActivePower.DataPropertyName = "ActivePower";
-            ActivePower.HeaderText = "Установленная мощность, МВт";
-            ActivePower.MinimumWidth = 6;
-            ActivePower.Name = "ActivePower";
-            ActivePower.Width = 150;
-            // 
-            // ReactivePower
-            // 
-            ReactivePower.DataPropertyName = "ReactivePower";
-            ReactivePower.HeaderText = "Q_min/Q_max, Мвар";
-            ReactivePower.MinimumWidth = 6;
-            ReactivePower.Name = "ReactivePower";
-            ReactivePower.Width = 150;
+            dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.DataGridView1_DataBindingComplete);
             // 
             // tabPage_resultsCalculation
             // 
@@ -315,6 +251,10 @@
             tabPage_resultsCalculation.TabIndex = 1;
             tabPage_resultsCalculation.Text = "Результаты расчёта";
             tabPage_resultsCalculation.UseVisualStyleBackColor = true;
+            // 
+            // openFileDialog1
+            // 
+            openFileDialog1.FileName = "openFileDialog1";
             // 
             // MainForm
             // 
@@ -362,12 +302,7 @@
         private TabPage tabPage_tableSPP;
         private TabPage tabPage_resultsCalculation;
         private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn NumSPP;
-        private DataGridViewTextBoxColumn NameSPP;
-        private DataGridViewTextBoxColumn StatusSPP;
-        private DataGridViewTextBoxColumn NodeSPP;
-        private DataGridViewTextBoxColumn PowerSystem;
-        private DataGridViewTextBoxColumn ActivePower;
-        private DataGridViewTextBoxColumn ReactivePower;
+        private SaveFileDialog saveFileDialog1;
+        private OpenFileDialog openFileDialog1;
     }
 }

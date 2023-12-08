@@ -19,3 +19,6 @@ C:\Users\Дарья\Desktop\1. ВКР\ИТ\VKR\VKR_Form\VKR_FORM\obj\Debug\net7.
 C:\Users\Дарья\Desktop\1. ВКР\ИТ\VKR\VKR_Form\VKR_FORM\obj\Debug\net7.0-windows\ref\VKRFORM.dll
 C:\Users\Дарья\Desktop\1. ВКР\ИТ\VKR\VKR_Form\VKR_FORM\obj\Debug\net7.0-windows\VKRFORM.MainForm.resources
 C:\Users\Дарья\Desktop\1. ВКР\ИТ\VKR\VKR_Form\VKR_FORM\obj\Debug\net7.0-windows\VKRFORM.Properties.Resources.resources
+C:\Users\Дарья\Desktop\1. ВКР\ИТ\VKR\VKR_FORM\VKR_FORM\bin\Debug\net7.0-windows\System.Text.Encodings.Web.dll
+C:\Users\Дарья\Desktop\1. ВКР\ИТ\VKR\VKR_FORM\VKR_FORM\bin\Debug\net7.0-windows\System.Text.Json.dll
+C:\Users\Дарья\Desktop\1. ВКР\ИТ\VKR\VKR_FORM\VKR_FORM\bin\Debug\net7.0-windows\runtimes\browser\lib\net7.0\System.Text.Encodings.Web.dll

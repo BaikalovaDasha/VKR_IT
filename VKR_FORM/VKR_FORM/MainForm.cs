@@ -7,7 +7,7 @@ using System.Windows.Forms;
 namespace VKRFORM
 {
     /// <summary>
-    /// 
+    /// Основная форма.
     /// </summary>
     public partial class MainForm : Form
     {
@@ -16,20 +16,10 @@ namespace VKRFORM
         /// </summary>
         private List<SolarPowerPlant> ListSPP;
 
-        /// <summary>
-        /// Тестовый объект1.
-        /// </summary>
-        private SolarPowerPlant listSPP1;
-
-        /// <summary>
-        /// Тестовый объект2.
-        /// </summary>
-        private SolarPowerPlant listSPP2;
-
         private BindingList<SolarPowerPlant> SPPDataList;
 
         /// <summary>
-        /// 
+        /// Запуск основной формы.
         /// </summary>
         public MainForm()
         {
@@ -37,8 +27,6 @@ namespace VKRFORM
 
             ListSPP = new List<SolarPowerPlant>();
 
-            // Что это такое? 
-            //DataGridViewCell cell = new DataGridViewTextBoxCell();
             SPPDataList = new BindingList<SolarPowerPlant>(ListSPP);
             dataGridView1.DataSource = SPPDataList;
         }
@@ -47,8 +35,8 @@ namespace VKRFORM
         /// Автозаполнение текстового поля в столбцах...
         /// ...Энергосистема и Статус СЭС.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">объект.</param>
+        /// <param name="e">datagridView.</param>
         private void DataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             var colIndex = dataGridView1.CurrentCell.ColumnIndex;
@@ -62,6 +50,7 @@ namespace VKRFORM
             {
                 textBox.AutoCompleteCustomSource = GetPowerSystemNames();
             }
+
             if (colName == "StatusSPP")
             {
                 textBox.AutoCompleteCustomSource = GetStatusSPPNames();
@@ -72,7 +61,7 @@ namespace VKRFORM
         /// <summary>
         /// Коллекция наименования ЭС.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Наименование СЭС.</returns>
         private static AutoCompleteStringCollection GetPowerSystemNames()
         {
             AutoCompleteStringCollection collection = new();
@@ -85,7 +74,7 @@ namespace VKRFORM
         /// <summary>
         /// Коллекция наименования Статуса СЭС.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Наименование статусов СЭС.</returns>
         private static AutoCompleteStringCollection GetStatusSPPNames()
         {
             AutoCompleteStringCollection collection = new();
@@ -98,8 +87,8 @@ namespace VKRFORM
         /// <summary>
         /// Сохранение таблицы СЭС в JSON.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">объект.</param>
+        /// <param name="e">аргумент.</param>
         private void Save_TableSPP_Click(object sender, EventArgs e)
         {
             saveFileDialog1.Filter = "Json files (*.json)|*.json";
@@ -123,8 +112,8 @@ namespace VKRFORM
         /// <summary>
         /// Загрузить таблицу СЭС.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">объект.</param>
+        /// <param name="e">аргумент.</param>
         private void Download_TableSPP_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -132,7 +121,7 @@ namespace VKRFORM
                 string filename = openFileDialog1.FileName;
 
                 string jsonString = File.ReadAllText(filename);
-                List<SolarPowerPlant> listFromJson = 
+                List<SolarPowerPlant> listFromJson =
                     JsonSerializer.Deserialize<List<SolarPowerPlant>>(jsonString);
 
                 SPPDataList = new BindingList<SolarPowerPlant>(listFromJson);
@@ -144,8 +133,8 @@ namespace VKRFORM
         /// Событие добавление новой строки или изменение...
         /// какой-либо ячейки в строке.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">объект.</param>
+        /// <param name="e">аргумент.</param>
         private void DataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             Console.WriteLine("DataBindingComplete");

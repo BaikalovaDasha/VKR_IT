@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OE0yZMq8HydOCMpKS44K27wdEmnvpnEAySU5nXxJv/ccvf0dvn4Lgrs4WVcilworqqz8sJgYWORUhZfQt/LwBA==",
+  "dgSpecHash": "88otsVuAz/Cwcds5daQXXJAFBpzFf/7WMIAPr3ZC+Fjo1C0KVIVtO4NVACSzYuwI7CmeaIU6+K2KK7TVwWElKg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_FORM\\Model\\Model.csproj",
+  "projectFilePath": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_Form\\Model\\Model.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Дарья\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512"
   ],

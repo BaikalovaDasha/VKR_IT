@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_FORM\\Model\\Model.csproj": {}
+    "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_Form\\Model\\Model.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_FORM\\Model\\Model.csproj": {
+    "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_Form\\Model\\Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_FORM\\Model\\Model.csproj",
+        "projectUniqueName": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_Form\\Model\\Model.csproj",
         "projectName": "Model",
-        "projectPath": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_FORM\\Model\\Model.csproj",
+        "projectPath": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_Form\\Model\\Model.csproj",
         "packagesPath": "C:\\Users\\Дарья\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_FORM\\Model\\obj\\",
+        "outputPath": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_Form\\Model\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Дарья\\AppData\\Roaming\\NuGet\\NuGet.Config",

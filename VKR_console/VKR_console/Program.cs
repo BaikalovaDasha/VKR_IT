@@ -3,7 +3,7 @@ using Model;
 
 namespace VKR_console
 {
-    // <summary>
+    /// <summary>
     /// Осовной код.
     /// </summary>
     internal class Program
@@ -13,8 +13,6 @@ namespace VKR_console
         /// </summary>
         public static void Main()
         {
-
-
             List<SolarPowerPlant> solarPowerPlant = new()
             {
                 new SolarPowerPlant(1, "Борзинская", StatusSPP.entered, 60303100, PowerSystem.Zabaikalskaya, 60),

@@ -2,6 +2,9 @@ using VKRFORM;
 
 namespace VKR_FORM
 {
+    /// <summary>
+    /// Код основной программы.
+    /// </summary>
     internal static class Program
     {
         /// <summary>

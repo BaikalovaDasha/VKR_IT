@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XwuQ4+nPIICzhKAAwbVJpEMLWINklv3sHIGMIpXMElvLENaL/1Ujrnj6wm5Z/ErTtSqTpFYl91Gt7tBCDusP/g==",
+  "dgSpecHash": "wUyzOyEJOm8HvrCMaUn2TfVovI29Jmj3zqT4bAPP+LPyzR16v6Ax9jI7fU8BD3GNQj9lJbu8D2eEEkGE7xkwHA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_FORM\\VKR_FORM\\VKRFORM.csproj",
+  "projectFilePath": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_Form\\VKR_FORM\\VKRFORM.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Дарья\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512",
     "C:\\Users\\Дарья\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",

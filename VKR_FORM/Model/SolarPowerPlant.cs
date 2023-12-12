@@ -2,8 +2,6 @@
 
 namespace Model
 {
-
-
     /// <summary>
     /// Класс СЭС.
     /// </summary>
@@ -30,7 +28,7 @@ namespace Model
         private double _installedCapacity;
 
         /// <summary>
-        /// Чтение и запись номера СЭС.
+        /// Gets or sets номера СЭС.
         /// </summary>
         [DisplayName("№")]
         public int NumberSPP
@@ -39,6 +37,7 @@ namespace Model
             {
                 return _numberSPP;
             }
+
             set
             {
                 _numberSPP = CheckingNumber(value);
@@ -46,7 +45,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Чтение и запись наименование СЭС.
+        /// Gets or sets наименование СЭС.
         /// </summary>
         [DisplayName("Наименование СЭС")]
         public string NameSPP
@@ -55,6 +54,7 @@ namespace Model
             {
                 return _nameSPP;
             }
+
             set
             {
                 _nameSPP = value;
@@ -62,13 +62,13 @@ namespace Model
         }
 
         /// <summary>
-        /// Чтение и запись статуса СЭС.
+        /// Gets or sets статуса СЭС.
         /// </summary>
         [DisplayName("Статус СЭС")]
         public StatusSPP StatusSPP { get; set; }
 
         /// <summary>
-        /// Чтение и запись узла в РМ.
+        /// Gets or sets узла в РМ.
         /// </summary>
         [DisplayName("Номер агрегата в РМ")]
         public int NodeSPP
@@ -77,6 +77,7 @@ namespace Model
             {
                 return _nodeSPP;
             }
+
             set
             {
                 _nodeSPP = CheckingNumber(value);
@@ -84,13 +85,13 @@ namespace Model
         }
 
         /// <summary>
-        /// Энрегосистема.
+        /// Gets or sets энрегосистема.
         /// </summary>
         [DisplayName("Энергосистема")]
         public PowerSystem PowerSystem { get; set; }
 
         /// <summary>
-        /// Чтение и запись номера СЭС.
+        /// Gets or sets номера СЭС.
         /// </summary>
         [DisplayName("Установленная мощность СЭС")]
         public double InstalledCapacity
@@ -99,6 +100,7 @@ namespace Model
             {
                 return _installedCapacity;
             }
+
             set
             {
                 _installedCapacity = CheckingNumber((int)value);
@@ -111,7 +113,7 @@ namespace Model
         /// <param name="number">Число для проверки.</param>
         /// <returns>проверенное число.</returns>
         /// <exception cref="ArgumentException">отбрасывает отрицательные...
-        /// ...числа</exception>
+        /// ...числа.</exception>
         private static int CheckingNumber(int number)
         {
             if (number < 0)
@@ -119,6 +121,7 @@ namespace Model
                 throw new ArgumentException("Параметр должен быть" +
                     " положительным!");
             }
+
             return number;
         }
     }

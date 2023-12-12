@@ -12,7 +12,7 @@ namespace Model
     public enum StatusSPP
     {
 
-        /// <summary> 
+        /// <summary>
         /// вводимая СЭС.
         /// </summary>
         entered,

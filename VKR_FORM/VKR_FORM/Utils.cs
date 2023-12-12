@@ -16,7 +16,7 @@ namespace VKRFORM
         /// числа, запятые и точки.
         /// Использование BackSpace.
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="e">проверяемый ввод с клавиатуры.</param>
         public static void CheckInput1(KeyPressEventArgs e)
         {
             const int backSpace = 8;
@@ -36,7 +36,7 @@ namespace VKRFORM
         /// числа, запятые и точки.
         /// Использование BackSpace.
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="e">проверяемое число.</param>
         public static void CheckInput2(KeyPressEventArgs e)
         {
             const int backSpace = 8;
@@ -52,14 +52,15 @@ namespace VKRFORM
         /// <summary>
         /// Преобразование числа в double.
         /// </summary>
-        /// <param name="number"></param>
-        /// <returns></returns>
+        /// <param name="number">число.</param>
+        /// <returns>проверенное число.</returns>
         public static double CheckNumber(string number)
         {
             if (number.Contains('.'))
             {
                 number = number.Replace('.', ',');
             }
+
             return double.Parse(number);
         }
 

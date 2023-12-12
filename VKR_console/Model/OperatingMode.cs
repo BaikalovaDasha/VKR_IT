@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Model
 {
+    /// <summary>
+    /// Перечисление коэффициентов средней выработки СЭС.
+    /// </summary>
     public enum OperatingModes
     {
         /// <summary>

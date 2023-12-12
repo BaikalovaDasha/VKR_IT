@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace Model
 {
+    /// <summary>
+    /// Класс для вычисления среднего коэффициента выработки...
+    /// мощности по действующим СЭС.
+    /// </summary>
     public class API
     {
         /// <summary>
         /// Словарь режимов работы ЭС.
         /// </summary>
-        public readonly Dictionary<OperatingModes, double> _modesOperating =
+        private readonly Dictionary<OperatingModes, double> _modesOperating =
             new()
             {
                 [OperatingModes.KWinterMaxAM] = 0.0757,
@@ -21,8 +25,5 @@ namespace Model
                 [OperatingModes.KSummerMaxPM] = 0.01024,
                 [OperatingModes.KSummerMin] = 0.0085,
             };
-
-
-
     }
 }

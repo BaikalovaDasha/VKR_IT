@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ZkWX/5IUkzHMRegMU1XTtfA4zK0ZuVnq3YbFt84SdzTJgVvN7/xSGuCbOpWQ2v66sngh/vbJrUSNH4tulQbn0A==",
+  "dgSpecHash": "XwuQ4+nPIICzhKAAwbVJpEMLWINklv3sHIGMIpXMElvLENaL/1Ujrnj6wm5Z/ErTtSqTpFYl91Gt7tBCDusP/g==",
   "success": true,
   "projectFilePath": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_FORM\\VKR_FORM\\VKRFORM.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Дарья\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512",
     "C:\\Users\\Дарья\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
     "C:\\Users\\Дарья\\.nuget\\packages\\system.text.json\\8.0.0\\system.text.json.8.0.0.nupkg.sha512"
   ],

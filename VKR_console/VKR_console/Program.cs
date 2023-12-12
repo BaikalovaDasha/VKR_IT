@@ -28,7 +28,7 @@ namespace VKR_console
                 new SolarPowerPlant(9, "Майдари", StatusSPP.entered, 60303104, PowerSystem.Zabaikalskaya, 210)
             };
 
-            CalculationRastr.GetInputPower(solarPowerPlant);
+            CalculationRastr.SettingPowerGeneratorsSPP(solarPowerPlant);
         }
 
     }

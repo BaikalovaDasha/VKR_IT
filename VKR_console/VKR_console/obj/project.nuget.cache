@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "B/ARlZoCwaxffKjHYD0F3DqhAn87/uZ976yTJ+8b3Agf5XtkNVDmC4RtO7rWfC3QbNGWdHmVrJpqTRwgT3U54w==",
+  "dgSpecHash": "ivpbV4DDh5ug2eYcXxqKoSgwX7UsKYm2sxxAeAdxZQjXJ9NIAH1UXXwEUpx4wotUaH4ko8yzpKE+uC2lcVCTUw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\VKR_console\\VKR_console.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Дарья\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512"
+  ],
   "logs": []
 }

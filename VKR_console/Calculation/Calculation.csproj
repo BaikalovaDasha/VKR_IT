@@ -4,7 +4,6 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <CodeAnalysisRuleSet>stylecop.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,16 +19,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="ASTRALib">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\RastrWin3\ASTRALib.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\ApplicationProgrammingInterface\ApplicationProgrammingInterface.csproj" />
+    <ProjectReference Include="..\Model\Model.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <Reference Include="ASTRALib">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\RastrWin3\ASTRALib.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

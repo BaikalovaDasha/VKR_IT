@@ -1,5 +1,4 @@
-﻿using ASTRALib;
-using Model;
+﻿using Model;
 
 namespace VKR_console
 {
@@ -26,7 +25,7 @@ namespace VKR_console
                 new SolarPowerPlant(9, "Майдари", StatusSPP.entered, 60303104, PowerSystem.Zabaikalskaya, 210)
             };
 
-            CalculationRastr.SettingPowerGeneratorsSPP(solarPowerPlant);
+            Calculationrastr1.SettingPowerGeneratorsSPP(solarPowerPlant);
         }
 
     }

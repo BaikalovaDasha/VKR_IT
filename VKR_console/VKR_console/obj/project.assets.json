@@ -5,6 +5,33 @@
       "StyleCop.Analyzers/1.1.118": {
         "type": "package"
       },
+      "ApplicationProgrammingInterface/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Model": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ApplicationProgrammingInterface.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ApplicationProgrammingInterface.dll": {}
+        }
+      },
+      "Calculation/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "ApplicationProgrammingInterface": "1.0.0",
+          "Model": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Calculation.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Calculation.dll": {}
+        }
+      },
       "Model/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -43,6 +70,16 @@
         "tools/uninstall.ps1"
       ]
     },
+    "ApplicationProgrammingInterface/1.0.0": {
+      "type": "project",
+      "path": "../ApplicationProgrammingInterface/ApplicationProgrammingInterface.csproj",
+      "msbuildProject": "../ApplicationProgrammingInterface/ApplicationProgrammingInterface.csproj"
+    },
+    "Calculation/1.0.0": {
+      "type": "project",
+      "path": "../Calculation/Calculation.csproj",
+      "msbuildProject": "../Calculation/Calculation.csproj"
+    },
     "Model/1.0.0": {
       "type": "project",
       "path": "../Model/Model.csproj",
@@ -51,6 +88,8 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "ApplicationProgrammingInterface >= 1.0.0",
+      "Calculation >= 1.0.0",
       "Model >= 1.0.0",
       "StyleCop.Analyzers >= 1.1.118"
     ]
@@ -82,6 +121,12 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
+            "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\ApplicationProgrammingInterface\\ApplicationProgrammingInterface.csproj": {
+              "projectPath": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\ApplicationProgrammingInterface\\ApplicationProgrammingInterface.csproj"
+            },
+            "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\Calculation\\Calculation.csproj": {
+              "projectPath": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\Calculation\\Calculation.csproj"
+            },
             "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\Model\\Model.csproj": {
               "projectPath": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\Model\\Model.csproj"
             }

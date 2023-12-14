@@ -11,7 +11,6 @@ namespace Model
     /// </summary>
     public enum StatusSPP
     {
-
         /// <summary>
         /// вводимая СЭС.
         /// </summary>

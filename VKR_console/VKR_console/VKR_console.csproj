@@ -9,6 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ApplicationProgrammingInterface\ApplicationProgrammingInterface.csproj" />
+    <ProjectReference Include="..\Calculation\Calculation.csproj" />
     <ProjectReference Include="..\Model\Model.csproj" />
   </ItemGroup>
 

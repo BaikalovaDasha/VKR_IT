@@ -4,6 +4,127 @@
     "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\VKR_console\\VKR_console.csproj": {}
   },
   "projects": {
+    "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\ApplicationProgrammingInterface\\ApplicationProgrammingInterface.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\ApplicationProgrammingInterface\\ApplicationProgrammingInterface.csproj",
+        "projectName": "ApplicationProgrammingInterface",
+        "projectPath": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\ApplicationProgrammingInterface\\ApplicationProgrammingInterface.csproj",
+        "packagesPath": "C:\\Users\\Дарья\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\ApplicationProgrammingInterface\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Дарья\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\Model\\Model.csproj": {
+                "projectPath": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\Model\\Model.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\Calculation\\Calculation.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\Calculation\\Calculation.csproj",
+        "projectName": "Calculation",
+        "projectPath": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\Calculation\\Calculation.csproj",
+        "packagesPath": "C:\\Users\\Дарья\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\Calculation\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Дарья\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\ApplicationProgrammingInterface\\ApplicationProgrammingInterface.csproj": {
+                "projectPath": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\ApplicationProgrammingInterface\\ApplicationProgrammingInterface.csproj"
+              },
+              "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\Model\\Model.csproj": {
+                "projectPath": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\Model\\Model.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\Model\\Model.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -91,6 +212,12 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
+              "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\ApplicationProgrammingInterface\\ApplicationProgrammingInterface.csproj": {
+                "projectPath": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\ApplicationProgrammingInterface\\ApplicationProgrammingInterface.csproj"
+              },
+              "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\Calculation\\Calculation.csproj": {
+                "projectPath": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\Calculation\\Calculation.csproj"
+              },
               "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\Model\\Model.csproj": {
                 "projectPath": "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\VKR\\VKR_console\\Model\\Model.csproj"
               }

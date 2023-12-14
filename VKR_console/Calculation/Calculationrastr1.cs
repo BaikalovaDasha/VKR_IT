@@ -1,11 +1,13 @@
 ﻿using ASTRALib;
+using Model;
+using ApplicationProgrammingInterface;
 
-namespace Model
+namespace Calculation
 {
     /// <summary>
-    /// Класс для взаимодействия с RastrWin.
+    /// Метод для расчёта в растре.
     /// </summary>
-    public class CalculationRastr
+    public class Calculationrastr1
     {
         /// <summary>
         /// Загрузка файла .rg2.
@@ -45,8 +47,15 @@ namespace Model
         /// <summary>
         /// Сохранение файла .rg2.
         /// </summary>
-        private static readonly string _pathFilerg = "C:\\Users\\Дарья\\Desktop" +
-            "\\1. ВКР\\ИТ\\РМ\\14-00 new(1.1).rg2";
+        private static readonly Dictionary<int, string> _pathFileRG = new()
+        {
+            [1] = "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\РМ\\14-00.(1.1)Зима_max_утро.rg2",
+            [2] = "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\РМ\\14-00.(1.3)Зима_max_вечер.rg2",
+            [3] = "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\РМ\\14-00.(1.5)Зима_min.rg2",
+            [4] = "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\РМ\\14-00.(2.1)Лето_max_утро.rg2",
+            [5] = "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\РМ\\14-00.(2.3)Лето_max_вечер.rg2",
+            [6] = "C:\\Users\\Дарья\\Desktop\\1. ВКР\\ИТ\\РМ\\14-00.(2.5)Лето_min.rg2",
+        };
 
         /// <summary>
         /// Сохранение режима.
@@ -56,23 +65,6 @@ namespace Model
         public static void SaveRegime(string pathFile, string pathSablon)
         {
             _rastr.Save(pathFile, pathSablon);
-        }
-
-        /// <summary>
-        /// Метод получение номеров агрегатов СЭС из списка.
-        /// </summary>
-        /// <param name="solarPowerPlant">Список СЭС.</param>
-        /// <returns>Номера агрегатов.</returns>
-        public static List<int> GetNumSPP(List<SolarPowerPlant> solarPowerPlant)
-        {
-            List<int> listNumSPP = new();
-
-            foreach (SolarPowerPlant spp in solarPowerPlant)
-            {
-                listNumSPP.Add(spp.SPPNum);
-            }
-
-            return listNumSPP;
         }
 
         /// <summary>
@@ -119,41 +111,39 @@ namespace Model
         }
 
         /// <summary>
-        /// СЛоварь средних коэф. выработки мощности для каждого режима.
-        /// </summary>
-        internal static readonly Dictionary<OperatingModes, double> _modesOperating = new()
-        {
-            [OperatingModes.KWinterMaxAM] = 0.0757,
-            [OperatingModes.KWinterMaxPM] = 0.01005,
-            [OperatingModes.KWinterMin] = 0,
-            [OperatingModes.KSummerMaxAM] = 0.2787,
-            [OperatingModes.KSummerMaxPM] = 0.01024,
-            [OperatingModes.KSummerMin] = 0.0085,
-        };
-
-        /// <summary>
         /// Метод расчёта мощности вводимых СЭС.
         /// </summary>
-        /// <param name="n">номер агрегата.</param>
         /// <param name="listSPP">список СЭС.</param>
+        /// <param name="num">номера агрегатов СЭС.</param>
         /// <returns>вводимая мощность.</returns>
-        public static List<double> GetInputPower(int n,
-            List<SolarPowerPlant> listSPP)
+        public static List<double> GetInputPower(List<SolarPowerPlant> listSPP, int num)
         {
             List<double> capacityInstall = new();
 
-            foreach (SolarPowerPlant spp in listSPP)
+            foreach (var item in ApplicationProgrammingInterface.API.ModesOperating)
             {
-                // изменить
-                if (n == spp.SPPNum)
-                {
-                    capacityInstall.Add(spp.InstallCapacity *
-                        _modesOperating[OperatingModes.KWinterMaxAM]);
-                }
-
+                var sppItem = listSPP.FirstOrDefault(x => x.SPPNum == num);
+                capacityInstall.Add(sppItem.InstallCapacity * item.Value);
             }
 
             return capacityInstall;
+        }
+
+        /// <summary>
+        /// Метод получение номеров агрегатов СЭС из списка.
+        /// </summary>
+        /// <param name="solarPowerPlant">Список СЭС.</param>
+        /// <returns>Номера агрегатов.</returns>
+        public static List<int> GetNumSPP(List<SolarPowerPlant> solarPowerPlant)
+        {
+            List<int> listNumSPP = new();
+
+            foreach (SolarPowerPlant spp in solarPowerPlant)
+            {
+                listNumSPP.Add(spp.SPPNum);
+            }
+
+            return listNumSPP;
         }
 
         /// <summary>
@@ -164,18 +154,27 @@ namespace Model
         {
             LoadFile(_pathFile, _pathSablon);
 
-            foreach (int num in GetNumSPP(listSPP))
+            foreach (var pathfile in _pathFileRG)
             {
-                foreach (double Pinput in GetInputPower(num, listSPP))
+                Console.WriteLine(pathfile.Value);
+
+                foreach (var num in GetNumSPP(listSPP))
                 {
-                    SetValue("Generator", "Num", num, "P", Pinput);
-                    Console.WriteLine($"Установленная мощность: {Pinput}.");
+                    Console.WriteLine(num);
+
+                    foreach (double Pinput in GetInputPower(listSPP, num))
+                    {
+                        Console.WriteLine(Pinput);
+
+                        // SetValue("Generator", "Num", num, "P", item);
+                        // SaveRegime(pathfile.Value, _pathSablon);
+                    }
+
+                    Console.WriteLine();
                 }
 
-               Console.Write($"Номер агрегата: {num}. \n");
+                Console.WriteLine();
             }
-
-            SaveRegime(_pathFilerg, _pathSablon);
         }
-}
+    }
 }

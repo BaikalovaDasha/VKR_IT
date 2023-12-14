@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model
+namespace ApplicationProgrammingInterface
 {
     /// <summary>
     /// Перечисление коэффициентов средней выработки СЭС.

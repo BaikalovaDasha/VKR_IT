@@ -12,3 +12,5 @@ C:\Users\Дарья\Desktop\1. ВКР\ИТ\VKR\VKR_console\Model\obj\Debug\net7.
 C:\Users\Дарья\Desktop\1. ВКР\ИТ\VKR\VKR_console\Model\obj\Debug\net7.0\refint\Model.dll
 C:\Users\Дарья\Desktop\1. ВКР\ИТ\VKR\VKR_console\Model\obj\Debug\net7.0\Model.pdb
 C:\Users\Дарья\Desktop\1. ВКР\ИТ\VKR\VKR_console\Model\obj\Debug\net7.0\ref\Model.dll
+C:\Users\Дарья\Desktop\1. ВКР\ИТ\VKR\VKR_console\Model\obj\Debug\net7.0\Interop.Microsoft.Office.Interop.Excel.dll
+C:\Users\Дарья\Desktop\1. ВКР\ИТ\VKR\VKR_console\Model\obj\Debug\net7.0\Model.csproj.ResolveComReference.cache

@@ -13,15 +13,18 @@ namespace Calculation
     /// </summary>
     public partial class PromisingModesOperation
     {
+
         /// <summary>
-        /// Получение необходимой строки по ЭС.
+        /// Получение необходимой строки по искомой ЭС.
         /// </summary>
+        /// <param name="textToFind">искомая ЭС.</param>
         /// <returns>строку из excel с указанной ЭС.</returns>
-        public int FindExcelPS(string textToFind)
+        public double[,] FindExcelRow(string textToFind)
         {
-            Application xlApp = new(); //Excel
+
+            Application xlApp = new(); // Excel
             Workbook xlWB; //рабочая книга              
-            Worksheet xlSht; //лист Excel            
+            Worksheet xlSht; //лист Excel
             Excel.Range Rng; //диапазон ячеек
 
             //название файла Excel
@@ -39,11 +42,28 @@ namespace Calculation
 
             int rowExcel = new();
 
+            double[,] arrayExcel = new double[3, 6];
+
             if (Rng != null)
             {
                 rowExcel = Convert.ToInt32(RegexToInt().Replace(Rng.Address, ""));
-                Console.WriteLine($"{rowExcel} - {xlSht.Cells[rowExcel, 3].Value}");
-                Rng.Select();
+
+                for (int i = 0; i < arrayExcel.GetLength(0); i++)
+                {
+                    for (int j = 0; j < arrayExcel.GetLength(1); j++)
+                    {
+                        if (xlSht.Cells[rowExcel + i, 3 + j].Value != null)
+                        {
+                            arrayExcel[i, j] = xlSht.Cells[rowExcel + i, 3 + j].Value;
+                        }
+                        else
+                        {
+                            arrayExcel[i, j] = 0;
+                        }
+                        Console.Write($"{arrayExcel[i, j]} \t");
+                    }
+                    Console.WriteLine();
+                }
 
             }
             else
@@ -53,7 +73,7 @@ namespace Calculation
 
             xlApp.Quit();
 
-            return rowExcel;
+            return arrayExcel;
         }
 
         /// <summary>
@@ -62,8 +82,5 @@ namespace Calculation
         /// <returns>int строки в excel.</returns>
         [GeneratedRegex("[^\\d]+")]
         private static partial Regex RegexToInt();
-
-
-
     }
 }

@@ -27,10 +27,10 @@ namespace View
             };
 
             string textToFind = "Забайкальская";
+            PromisingModesOperation findtext = new();
+            findtext.FindExcelRow(textToFind);
 
             // Calculationrastr1.SettingPowerGeneratorsSPP(solarPowerPlant);
-            PromisingModesOperation findtext = new();
-            findtext.FindExcelPS(textToFind);
         }
 
     }

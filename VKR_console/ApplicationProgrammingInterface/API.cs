@@ -15,7 +15,7 @@ namespace ApplicationProgrammingInterface
         /// <summary>
         /// СЛоварь средних коэф. выработки мощности для каждого режима.
         /// </summary>
-        internal static readonly Dictionary<OperatingModes, double> ModesOperating = new()
+        public static readonly Dictionary<OperatingModes, double> ModesOperating = new()
         {
             [OperatingModes.KWinterMaxAM] = 0.0757,
             [OperatingModes.KWinterMaxPM] = 0.01005,

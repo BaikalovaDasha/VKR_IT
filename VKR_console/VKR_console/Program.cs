@@ -1,6 +1,7 @@
 ﻿using Model;
+using Calculation;
 
-namespace VKR_console
+namespace View
 {
     /// <summary>
     /// Осовной код.
@@ -25,7 +26,11 @@ namespace VKR_console
                 new SolarPowerPlant(9, "Майдари", StatusSPP.entered, 60303104, PowerSystem.Zabaikalskaya, 210)
             };
 
-            Calculationrastr1.SettingPowerGeneratorsSPP(solarPowerPlant);
+            string textToFind = "Забайкальская";
+
+            // Calculationrastr1.SettingPowerGeneratorsSPP(solarPowerPlant);
+            PromisingModesOperation findtext = new();
+            findtext.FindExcelPS(textToFind);
         }
 
     }

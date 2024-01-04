@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VKR_console", "VKR_console\VKR_console.csproj", "{E994098D-3AAA-453A-A4AF-7020A68A43F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "View", "VKR_console\View.csproj", "{E994098D-3AAA-453A-A4AF-7020A68A43F1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{DE923052-6DEB-4328-AC83-B22EFCDB44AC}"
 EndProject

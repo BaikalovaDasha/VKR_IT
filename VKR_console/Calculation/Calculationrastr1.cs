@@ -1,11 +1,13 @@
 ﻿using ASTRALib;
 using Model;
 using ApplicationProgrammingInterface;
+using System.Collections.Generic;
+using System;
 
 namespace Calculation
 {
     /// <summary>
-    /// Метод для расчёта в растре.
+    /// класс для расчёта в растре.
     /// </summary>
     public class Calculationrastr1
     {
@@ -114,20 +116,20 @@ namespace Calculation
         /// Метод расчёта мощности вводимых СЭС.
         /// </summary>
         /// <param name="listSPP">список СЭС.</param>
-        /// <param name="num">номера агрегатов СЭС.</param>
+        /// <param name="count">номер режима.</param>
         /// <returns>вводимая мощность.</returns>
-        public static List<double> GetInputPower(List<SolarPowerPlant> listSPP, int num)
+        public static List<double> GetInputPower(List<SolarPowerPlant> listSPP, int count)
         {
             List<double> capacityInstall = new();
 
-            foreach (var item in ApplicationProgrammingInterface.API.ModesOperating)
+            foreach (var sppItem in listSPP)
             {
-                var sppItem = listSPP.FirstOrDefault(x => x.SPPNum == num);
-                capacityInstall.Add(sppItem.InstallCapacity * item.Value);
+                capacityInstall.Add(sppItem.InstallCapacity * API.ModesOperating[(OperatingModes)count]);
             }
 
             return capacityInstall;
         }
+
 
         /// <summary>
         /// Метод получение номеров агрегатов СЭС из списка.
@@ -156,24 +158,19 @@ namespace Calculation
 
             foreach (var pathfile in _pathFileRG)
             {
-                Console.WriteLine(pathfile.Value);
+                Console.WriteLine(pathfile);
+                int ppCount = 0;
+
+                List<double> newList = GetInputPower(listSPP,
+                    pathfile.Key - 1);
 
                 foreach (var num in GetNumSPP(listSPP))
                 {
-                    Console.WriteLine(num);
-
-                    foreach (double Pinput in GetInputPower(listSPP, num))
-                    {
-                        Console.WriteLine(Pinput);
-
-                        // SetValue("Generator", "Num", num, "P", item);
-                        // SaveRegime(pathfile.Value, _pathSablon);
-                    }
-
-                    Console.WriteLine();
+                    Console.WriteLine($"Номер генератора в РМ: {num} и его мощность: {newList[ppCount]}");
+                    SetValue("Generator", "Num", num, "P", newList[ppCount]);
+                    SaveRegime(pathfile.Value, _pathSablon);
+                    ppCount++;
                 }
-
-                Console.WriteLine();
             }
         }
     }

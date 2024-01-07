@@ -26,17 +26,11 @@ namespace View
                 new SolarPowerPlant(9, "Майдари", StatusSPP.entered, 60303104, PowerSystem.Zabaikalskaya, 210)
             };
 
-            string _pathFile1 = "C:\\Users\\Дарья\\Desktop" +
-                                "\\1. ВКР\\ИТ\\Excel\\power_consum_max_coefficient_2023_140623.xlsx";
-
-            string _pathFile2 = "C:\\Users\\Дарья\\Desktop" +
-                                "\\1. ВКР\\ИТ\\Excel\\temp_coefficient_2023_140623.xlsx";
-
-            string textToFind = "Забайкальская";
-
             PerspectiveModesOperation findtext = new();
+            findtext.CalculatePowerConsumption(1578);
 
-            // findtext.GetkoefTOES(textToFind);
+            // findtext.FindExcelArray();
+
             // double[,] arrayExcel = findtext.FindExcelRow(textToFind);
             // PerspectiveModesOperation.GetPowerMax(arrayExcel);
             // Calculationrastr1.SettingPowerGeneratorsSPP(solarPowerPlant);

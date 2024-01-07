@@ -14,13 +14,21 @@ namespace Calculation
     /// </summary>
     public class PerspectiveModesOperation
     {
+        private readonly string _pathFile1 = "C:\\Users\\Дарья\\Desktop" +
+                                "\\1. ВКР\\ИТ\\Excel\\power_consum_max_coefficient_2023_140623.xlsx";
+
+        private readonly string _pathFile2 = "C:\\Users\\Дарья\\Desktop" +
+                            "\\1. ВКР\\ИТ\\Excel\\temp_coefficient_2023_140623.xlsx";
+
+        private readonly string _textToFind = "Забайкальская";
+
+
         /// <summary>
-        /// Метод получения строки из файла Excel  с необходимой ЭС.
+        /// Метод открывающий файл Excel.
         /// </summary>
-        /// <param name="_pathFile">Файл, в котором производится поиск.</param>
-        /// <param name="textToFind">Искомое слово.</param>
-        /// <returns>Строка в котором находится исхомое слово.</returns>
-        public int FindExcelRowPS(string _pathFile, string textToFind)
+        /// <param name="_pathFile">Открываемый файл.</param>
+        /// <returns>Лист в открытом файле excel.</returns>
+        private Worksheet OpenFileExcel(string _pathFile)
         {
             // Excel
             Application xlApp = new();
@@ -31,14 +39,29 @@ namespace Calculation
             //лист Excel
             Worksheet xlSht;
 
-            //диапазон ячеек
-            Excel.Range Rng;
-
             //название файла Excel
             xlWB = xlApp.Workbooks.Open(_pathFile);
 
             //название листа или 1-й лист в книге xlSht = xlWB.Worksheets[1];
             xlSht = xlWB.Worksheets[1];
+
+            // добавление закрытия excel.xml
+            // xlApp.Workbooks.Close();
+            // xlApp.Quit();
+
+            return xlSht;
+        }
+
+        /// <summary>
+        /// Метод позволяющий искать ЭС в Excel.
+        /// </summary>
+        /// <param name="textToFind">Искомое слово.</param>
+        /// <param name="xlSht">Лист в Excel.</param>
+        /// <returns>Номер строки в Excel.</returns>
+        private static int FindRowInExcel(string textToFind, Worksheet xlSht)
+        {
+            //диапазон ячеек
+            Excel.Range Rng;
 
             textToFind = textToFind.Length > 6
                 ? textToFind.Remove(textToFind.Length - 4)
@@ -47,7 +70,16 @@ namespace Calculation
             // осуществляем поиск на листе
             Rng = xlSht.Cells.Find(textToFind, Type.Missing, XlFindLookIn.xlValues, XlLookAt.xlPart);
 
-            int rowExcel = Convert.ToInt32(Regex.Replace(Rng.Address, @"[^\d]+", ""));
+            int rowExcel = 0;
+
+            if (Rng != null)
+            {
+                rowExcel = Convert.ToInt32(Regex.Replace(Rng.Address, @"[^\d]+", ""));
+            }
+            else
+            {
+                Console.WriteLine($"Текст {textToFind} на листе не найден!");
+            }
 
             return rowExcel;
         }
@@ -57,67 +89,28 @@ namespace Calculation
         /// потребления мощности территориальных энергосистем при изменении...
         /// температуры наружного воздуха.
         /// </summary>
-        /// <param name="textToFind">искомая ЭС.</param>
         /// <returns>массив коэффициентов.</returns>
-        public double[,] FindExcelArray(string textToFind)
+        private double[,] FindExcelArray()
         {
-            // Excel
-            Application xlApp = new();
-
-            //рабочая книга
-            Workbook xlWB;
-
-            //лист Excel
-            Worksheet xlSht;
-
-            //диапазон ячеек
-            Excel.Range Rng;
-
-            //название файла Excel
-            xlWB = xlApp.Workbooks.Open(@"C:\Users\Дарья\Desktop\1. ВКР\ИТ\Excel\power_consum_max_coefficient_2023_140623.xlsx");
-            
-            //название листа или 1-й лист в книге xlSht = xlWB.Worksheets[1];
-            xlSht = xlWB.Worksheets[1];
-
-            textToFind = textToFind.Length > 6 
-                ? textToFind.Remove(textToFind.Length - 4) 
-                : textToFind.Remove(textToFind.Length - 2);
-
-            // осуществляем поиск на листе
-            Rng = xlSht.Cells.Find(textToFind, Type.Missing, XlFindLookIn.xlValues, XlLookAt.xlPart);
-
-            int rowExcel = new();
+            Worksheet xlSht = OpenFileExcel(_pathFile1);
+            int rowExcel = FindRowInExcel(_textToFind, xlSht);
 
             double[,] arrayExcel = new double[3, 6];
 
-            if (Rng != null)
+            for (int i = 0; i < arrayExcel.GetLength(0); i++)
             {
-                rowExcel = Convert.ToInt32(Regex.Replace(Rng.Address, @"[^\d]+", ""));
-
-                for (int i = 0; i < arrayExcel.GetLength(0); i++)
+                for (int j = 0; j < arrayExcel.GetLength(1); j++)
                 {
-                    for (int j = 0; j < arrayExcel.GetLength(1); j++)
+                    if (xlSht.Cells[rowExcel + i, 3 + j].Value != null)
                     {
-                        if (xlSht.Cells[rowExcel + i, 3 + j].Value != null)
-                        {
-                            arrayExcel[i, j] = xlSht.Cells[rowExcel + i, 3 + j].Value;
-                        }
-                        else
-                        {
-                            arrayExcel[i, j] = 0;
-                        }
+                        arrayExcel[i, j] = xlSht.Cells[rowExcel + i, 3 + j].Value;
+                    }
+                    else
+                    {
+                        arrayExcel[i, j] = 0;
                     }
                 }
-                xlApp.Workbooks.Close();
             }
-            else
-            {
-                Console.WriteLine($"Текст {textToFind} на листе не найден!");
-            }
-
-            // добавление закрытия excel.xml
-            xlApp.Workbooks.Close();
-            xlApp.Quit();
 
             return arrayExcel;
         }
@@ -126,96 +119,25 @@ namespace Calculation
         /// Определение коэффициентов и расчётных температур наружного...
         /// воздуха ЭС, по наименованию ЭС.
         /// </summary>
-        /// <param name="textToFind">Наименование ЭС.</param>
         /// <returns>словарь коэффициентов и температур.</returns>
-        public Dictionary<string, double> GetkoefToES(string textToFind)
+        private Dictionary<string, double> GetkoefToES()
         {
-            // Excel
-            Application xlApp = new();
+            Worksheet xlSht = OpenFileExcel(_pathFile2);
+            int rowExcel = FindRowInExcel(_textToFind, xlSht);
 
-            //рабочая книга
-            Workbook xlWB;
-
-            //лист Excel
-            Worksheet xlSht;
-
-            //диапазон ячеек
-            Excel.Range Rng;
-
-            //название файла Excel
-            xlWB = xlApp.Workbooks.Open(@"C:\Users\Дарья\Desktop\1. ВКР\ИТ\Excel\temp_coefficient_2023_140623.xlsx");
-
-            //название листа или 1-й лист в книге xlSht = xlWB.Worksheets[1];
-            xlSht = xlWB.Worksheets[1];
-
-            textToFind = textToFind.Length > 6
-                ? textToFind.Remove(textToFind.Length - 4)
-                : textToFind.Remove(textToFind.Length - 2);
-
-            // осуществляем поиск на листе
-            Rng = xlSht.Cells.Find(textToFind, Type.Missing, XlFindLookIn.xlValues, XlLookAt.xlPart);
-
-            int rowExcel = new();
-
-            Dictionary<string, double> dictionaryKoef = new();
-
-            if (Rng != null)
+            Dictionary<string, double> dictionaryKoef = new()
             {
-                rowExcel = Convert.ToInt32(Regex.Replace(Rng.Address, @"[^\d]+", ""));
-                dictionaryKoef.Add("kZimaMinMax", xlSht.Cells[rowExcel, 3].Value);
-                dictionaryKoef.Add("kLetoMinMax", xlSht.Cells[rowExcel, 4].Value);
-                dictionaryKoef.Add("kLZMax", xlSht.Cells[rowExcel, 6].Value);
-                dictionaryKoef.Add("tsrSIPR", xlSht.Cells[rowExcel, 38].Value);
-                dictionaryKoef.Add("tLeto0.98", xlSht.Cells[rowExcel, 37].Value);
-                dictionaryKoef.Add("tZima0.92", xlSht.Cells[rowExcel, 36].Value);
-                dictionaryKoef.Add("tGOST", xlSht.Cells[rowExcel, 40].Value);
-                dictionaryKoef.Add("tLetoNorm", xlSht.Cells[rowExcel, 39].Value);
-            }
-            else
-            {
-                Console.WriteLine($"Текст {textToFind} на листе не найден!");
-            }
-
-            // добавление закрытия excel.xml
-            xlWB.Close(false);
-            xlApp.Workbooks.Close();
-            xlApp.Quit();
-            xlApp = null;
-            xlWB = null;
-            xlSht = null;
-            Rng = null;
+                { "kZimaMinMax", xlSht.Cells[rowExcel, 3].Value },
+                { "kLetoMinMax", xlSht.Cells[rowExcel, 4].Value },
+                { "kLZMax", xlSht.Cells[rowExcel, 6].Value },
+                { "tsrSIPR", xlSht.Cells[rowExcel, 38].Value },
+                { "tLeto0.98", xlSht.Cells[rowExcel, 37].Value },
+                { "tZima0.92", xlSht.Cells[rowExcel, 36].Value },
+                { "tGOST", xlSht.Cells[rowExcel, 40].Value },
+                { "tLetoNorm", xlSht.Cells[rowExcel, 39].Value }
+            };
 
             return dictionaryKoef;
-        }
-
-        /// <summary>
-        /// Метод расчёта потребления мощности в зависимости от наружного воздуха.
-        /// </summary>
-        /// <param name="excelarray">массив коэффициентов зависимости изменения температур.</param>
-        /// <param name="tempCalcul">расчётное значение температуры.</param>
-        /// <param name="tempInit">исходное значение температуры.</param>
-        /// <param name="pInit">исходное значение мощности.</param>
-        public static double GetPowerMax(double[,] excelarray, double tempCalcul,
-            double tempInit, double pInit)
-        {
-            double pCalaul = pInit;
-
-            for (int j = 0; j < excelarray.GetLength(1); j++)
-            {
-                double koef = excelarray[2, j];
-                if (tempCalcul > excelarray[0, j] && tempCalcul < excelarray[1, j])
-                {
-                    pCalaul = Calculate(pCalaul, tempCalcul, excelarray[0, j], koef);
-                    break;
-                }
-                else
-                {
-                    pCalaul = Calculate(pCalaul, excelarray[1, j], tempInit, koef);
-                    tempInit = excelarray[0, j + 1];
-                }
-            }
-
-            return pCalaul;
         }
 
         /// <summary>
@@ -226,11 +148,99 @@ namespace Calculation
         /// <param name="TempIsx">значение температуры исходных условий.</param>
         /// <param name="k">коэффициент знависимости изменения потребления мощности.</param>
         /// <returns>Расчётное значение мощности.</returns>
-        public static double Calculate(double pInit, double TempRasch, double TempIsx, double k)
+        private static double CalculatePower(double pInit, double TempRasch, double TempIsx, double k)
         {
             return pInit * (1 + k / 100 * (TempRasch - TempIsx));
         }
 
+        /// <summary>
+        /// Метод перерасчёта потребления мощности в зависимости от наружного воздуха.
+        /// </summary>
+        /// <param name="tempCalcul">расчётное значение температуры.</param>
+        /// <param name="tempInit">исходное значение температуры.</param>
+        /// <param name="pInit">исходное значение мощности.</param>
+        public double GetPowerMax(double tempCalcul, double tempInit, double pInit)
+        {
+            double[,] excelarray = FindExcelArray();
 
+            double pCalaul = pInit;
+
+            for (int j = 0; j < excelarray.GetLength(1); j++)
+            {
+                double koef = excelarray[2, j];
+
+                if (tempCalcul > excelarray[0, j] && tempCalcul < excelarray[1, j])
+                {
+                    Dictionary<string, double> dictionaryKoef = GetkoefToES();
+
+                    if (tempInit == dictionaryKoef["tsrSIPR"])
+                    {
+                        pCalaul = CalculatePower(pCalaul, tempCalcul, tempInit, koef);
+                        break;
+                    }
+                    else
+                    {
+                        pCalaul = CalculatePower(pCalaul, tempCalcul, excelarray[0, j], koef);
+                        break;
+                    }
+
+                }
+                else
+                {
+                    pCalaul = CalculatePower(pCalaul, excelarray[1, j], tempInit, koef);
+                    tempInit = excelarray[0, j + 1];
+                }
+            }
+
+            return pCalaul;
+        }
+
+
+
+        /// <summary>
+        /// Метод расчёта потребления мощности в зависимости от наружного воздуха.
+        /// </summary>
+        /// <param name="pInit">Мощность полученная в результате перерасчёта.</param>
+        /// <param name="k">коэффициент соотношения максимального...
+        /// и минимального потребления мощности в зависимости от...
+        /// периода года.</param>
+        /// <returns>Расчётное значение мощности.</returns>
+        private static double Powerkoef(double pInit, double k)
+        {
+            return pInit * k;
+        }
+
+        public double[] CalculatePowerConsumption(int pInit)
+        {
+            Dictionary<string, double> dictionaryKoef = GetkoefToES();
+
+            double[] arrayPower = new double[7];
+
+            double pMaxZima092 = GetPowerMax(dictionaryKoef["tZima0.92"], dictionaryKoef["tsrSIPR"], pInit);
+            double pMaxZimaGOST = GetPowerMax(dictionaryKoef["tGOST"], dictionaryKoef["tsrSIPR"], pInit);
+            double pMinZima092 = Powerkoef(pMaxZima092, dictionaryKoef["kZimaMinMax"]);
+            double pMinZimaGOST = Powerkoef(pMaxZimaGOST, dictionaryKoef["kZimaMinMax"]);
+
+            double pMaxLetoCalcul = Powerkoef(pInit, dictionaryKoef["kLZMax"]);
+
+            double pMaxLeto098 = GetPowerMax(dictionaryKoef["tLeto0.98"], dictionaryKoef["tsrSIPR"], pMaxLetoCalcul);
+            double pMaxLetoNorm = GetPowerMax(dictionaryKoef["tLetoNorm"], dictionaryKoef["tsrSIPR"], pMaxLetoCalcul);
+            double pMinLetoNorm = Powerkoef(pMaxLetoNorm, dictionaryKoef["kLetoMinMax"]);
+
+            arrayPower[0] = pMinZima092;
+            arrayPower[1] = pMaxZimaGOST;
+            arrayPower[2] = pMinZima092;
+            arrayPower[3] = pMinZimaGOST;
+            arrayPower[4] = pMaxLeto098;
+            arrayPower[5] = pMaxLetoNorm;
+            arrayPower[6] = pMinLetoNorm;
+
+            for (int i = 0; i < arrayPower.Length; i++)
+            {
+                Console.WriteLine(arrayPower[i]);
+            }
+
+            return arrayPower;
+        }
     }
 }

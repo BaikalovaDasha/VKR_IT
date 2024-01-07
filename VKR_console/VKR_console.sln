@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "View", "VKR_console\View.cs
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{DE923052-6DEB-4328-AC83-B22EFCDB44AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculation", "Calculation\Calculation.csproj", "{E19AECB7-4997-4CEC-9E0D-18774DE69908}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculation", "Calculation\Calculation.csproj", "{E19AECB7-4997-4CEC-9E0D-18774DE69908}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationProgrammingInterface", "ApplicationProgrammingInterface\ApplicationProgrammingInterface.csproj", "{57C0485D-A634-4428-AEDC-F74804997CF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationProgrammingInterface", "ApplicationProgrammingInterface\ApplicationProgrammingInterface.csproj", "{57C0485D-A634-4428-AEDC-F74804997CF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainForm", "MaintForm\MainForm.csproj", "{6632C6B8-702E-47B9-B964-14F0C6109DFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{57C0485D-A634-4428-AEDC-F74804997CF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57C0485D-A634-4428-AEDC-F74804997CF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57C0485D-A634-4428-AEDC-F74804997CF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6632C6B8-702E-47B9-B964-14F0C6109DFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6632C6B8-702E-47B9-B964-14F0C6109DFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6632C6B8-702E-47B9-B964-14F0C6109DFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6632C6B8-702E-47B9-B964-14F0C6109DFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
